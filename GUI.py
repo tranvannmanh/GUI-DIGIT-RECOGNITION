@@ -13,14 +13,15 @@ def predict_digit(img):
     img = img.resize((28, 28))
     # convert rgb to grayscale
     img = img.convert('L')
-    img = np.array(img)
+    img = 255 - np.array(img)
     # reshaping to support our model input and normalizing
     img = img.reshape(1, 28, 28, 1)
-    img = img/255.0
+    # img = img/255.0
     # predicting the class
+    print(img)
     res = model.predict([img])[0]
     # print('{} / {} - {}'.format(res, np.argmax(res), max(res)))
-    return np.argmax(res), min(res)
+    return np.argmax(res), max(res)
 
 
 class App(tk.Tk):
