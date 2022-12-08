@@ -5,7 +5,7 @@ import win32gui
 from PIL import ImageGrab, Image
 import numpy as np
 
-model = load_model('mnist.h5')
+model = load_model('CNN1.h5')
 
 
 def predict_digit(img):
@@ -16,9 +16,9 @@ def predict_digit(img):
     img = 255 - np.array(img)
     # reshaping to support our model input and normalizing
     img = img.reshape(1, 28, 28, 1)
-    # img = img/255.0
+    img = img/255.0
     # predicting the class
-    print(img)
+    # print(img)
     res = model.predict([img])[0]
     # print('{} / {} - {}'.format(res, np.argmax(res), max(res)))
     return np.argmax(res), max(res)
